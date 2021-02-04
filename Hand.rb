@@ -49,9 +49,8 @@ class Hand
   end
 
   def high_card
-    a = find_cards_numeric_value.sort
-    return 14 if a.first == 1
-    a.last
+    a = find_cards_numeric_value
+    a.include?(1) ? 14 : a.max
   end
   
   def which_hand_am_i

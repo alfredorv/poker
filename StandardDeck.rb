@@ -1,4 +1,5 @@
 require_relative "Card"
+require_relative "PokerGui"
 
 class StandardDeck
   attr_accessor :cards
@@ -21,17 +22,17 @@ class StandardDeck
   }.freeze
 
   def initialize
-    @cards = Array.new
+    @cards = []
     create_cards
   end
 
   def shuffle_deck
-    puts "Shuffling deck..."
+    PokerGui.shuffling_deck
     @cards.shuffle!
   end
   
   def pick_card!
-    # Raise error if empty
+    raise StandardError.new "There are no more cards!" if @cards.empty?
     @cards.pop
   end
 
