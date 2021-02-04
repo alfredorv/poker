@@ -2,9 +2,6 @@ require_relative "StandardDeck"
 require_relative "Player"
 require_relative "PokerRules"
 
-# Solo para fines de testing temporal
-require_relative "Card"
-
 class PokerGame
   def initialize(number_of_players)
     @players = Array.new(number_of_players).collect! { Player.new }
@@ -15,9 +12,6 @@ class PokerGame
   def play
     @deck.shuffle_deck
     deal_cards
-
-    add_test_player
-
     show_players_cards
     show_players_hands
   end
@@ -58,20 +52,6 @@ private
 
   # USAR MÉTODO SEND con SYMBOLS
   def players_activity(message, method)
-  end
-
-  def add_test_player
-    cards = [
-      Card.new("clubs", "10"),
-      Card.new("clubs", "J"),
-      Card.new("clubs", "K"),
-      Card.new("clubs", "Q"),
-      Card.new("clubs", "A")
-    ]
-    hand = Hand.new(cards)
-    player = Player.new
-    player.hand = hand
-    @players << player
   end
 end
 
