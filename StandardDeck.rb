@@ -1,13 +1,46 @@
+require_relative "Card"
+
 class StandardDeck
   attr_accessor :cards
 
+  SUITS = ["clubs", "diamonds", "hearts", "spades"].freeze
+  VALUES = {
+    "A" => 1,
+    "2" => 2,
+    "3" => 3,
+    "4" => 4,
+    "5" => 5,
+    "6" => 6,
+    "7" => 7,
+    "8" => 8,
+    "9" => 9,
+    "10" => 10,
+    "J" => 11,
+    "Q" => 12,
+    "K" => 13
+  }.freeze
+
   def initialize
-    @cards = { 
-      clubs: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"],
-      diamonds: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"],
-      hearts: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"],
-      spades: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"],
-    }
+    @cards = Array.new
+    create_cards
   end
 
+  def shuffle_deck
+    puts "Shuffling deck..."
+    @cards.shuffle!
+  end
+  
+  def pick_card!
+    # Raise error if empty
+    @cards.pop
+  end
+
+private
+  def create_cards
+    SUITS.each do |suit|
+      VALUES.each_pair do |k, v|
+        @cards << Card.new(suit, k)
+      end
+    end
+  end  
 end
