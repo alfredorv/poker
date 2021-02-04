@@ -5,7 +5,6 @@ class Player
 
   def initialize
     @hand = Hand.new
-    @points = 0
   end
 
   def show_cards

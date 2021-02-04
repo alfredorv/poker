@@ -311,7 +311,7 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.which_hand_am_i).to eql({ name: "Royal Flush", points: 10000 }) }
+      it { expect(subject.which_hand_am_i).to eql({ name: "Royal Flush", points: 10047 }) }
     end
 
     context "is Straight Flush" do
@@ -325,7 +325,7 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.which_hand_am_i).to eql({ name: "Straight Flush", points: 9000 }) }
+      it { expect(subject.which_hand_am_i).to eql({ name: "Straight Flush", points: 9035 }) }
     end
 
     context "is Four of a Kind" do
@@ -339,7 +339,7 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.which_hand_am_i).to eql({ name: "Four of a Kind", points: 8000 }) }
+      it { expect(subject.which_hand_am_i).to eql({ name: "Four of a Kind", points: 8029 }) }
     end
 
     context "is Full House" do
@@ -353,7 +353,7 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.which_hand_am_i).to eql({ name: "Full House", points: 7000 }) }
+      it { expect(subject.which_hand_am_i).to eql({ name: "Full House", points: 7028 }) }
     end
 
     context "is Flush" do
@@ -367,7 +367,7 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.which_hand_am_i).to eql({ name: "Flush", points: 6000 }) }
+      it { expect(subject.which_hand_am_i).to eql({ name: "Flush", points: 6022 }) }
     end
 
     context "is Straight" do
@@ -381,7 +381,7 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.which_hand_am_i).to eql({ name: "Straight", points: 5000 }) }
+      it { expect(subject.which_hand_am_i).to eql({ name: "Straight", points: 5015 }) }
     end
 
     context "is Three of a Kind" do
@@ -395,7 +395,7 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.which_hand_am_i).to eql({ name: "Three of a Kind", points: 4000 }) }
+      it { expect(subject.which_hand_am_i).to eql({ name: "Three of a Kind", points: 4008 }) }
     end
 
     context "is Two Pair" do
@@ -409,7 +409,7 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.which_hand_am_i).to eql({ name: "Two pair", points: 3000 }) }
+      it { expect(subject.which_hand_am_i).to eql({ name: "Two pair", points: 3010 }) }
     end
 
     context "is Pair" do
@@ -423,7 +423,7 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.which_hand_am_i).to eql({ name: "Pair", points: 2000 }) }
+      it { expect(subject.which_hand_am_i).to eql({ name: "Pair", points: 2011 }) }
     end
 
     context "is High Card" do
