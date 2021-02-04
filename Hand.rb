@@ -54,17 +54,17 @@ class Hand
     a.last
   end
   
-
   def which_hand_am_i
-    return { name: "Royal Flush", points: 10000 } if is_royal_flush?
-    return { name: "Straight Flush", points: 9000 } if is_straight_flush?
-    return { name: "Four of a Kind", points: 8000 } if is_four_of_a_kind?
-    return { name: "Full House", points: 7000 } if is_full_house?
-    return { name: "Flush", points: 6000 } if is_flush?
-    return { name: "Straight", points: 5000 } if is_straight?
-    return { name: "Three of a Kind", points: 4000 } if is_three_of_a_kind?
-    return { name: "Two pair", points: 3000 } if is_two_pair?
-    return { name: "Pair", points: 2000 } if is_pair?
+    points =  cards_values.reduce(:+)
+    return { name: "Royal Flush", points: 10000 + points } if is_royal_flush?
+    return { name: "Straight Flush", points: 9000 + points } if is_straight_flush?
+    return { name: "Four of a Kind", points: 8000 + points } if is_four_of_a_kind?
+    return { name: "Full House", points: 7000 + points } if is_full_house?
+    return { name: "Flush", points: 6000 + points } if is_flush?
+    return { name: "Straight", points: 5000 + points } if is_straight?
+    return { name: "Three of a Kind", points: 4000 + points } if is_three_of_a_kind?
+    return { name: "Two pair", points: 3000 + points } if is_two_pair?
+    return { name: "Pair", points: 2000 + points } if is_pair?
     return { name: "High card", points: 1000 + high_card }
   end
 

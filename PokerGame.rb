@@ -6,14 +6,15 @@ class PokerGame
   def initialize(number_of_players)
     @players = Array.new(number_of_players).collect! { Player.new }
     @deck = StandardDeck.new
-    # @rules = PokerRules.new
+    @results = []
   end
 
   def play
     @deck.shuffle_deck
     deal_cards
-    show_players_cards
-    show_players_hands
+    obtain_results
+    winner = PokerRules.winner_hand(@results)
+    puts "Winner is player #{winner[:id]}!!"
   end
 
 private
@@ -31,28 +32,20 @@ private
     end
   end
 
-  # Crear método para evitar repetir código aquí y abajo
-  def show_players_cards
-    @players.each_with_index do |player, index| 
-      puts "Player #{index + 1} cards:"
+  def obtain_results
+    @players.each_with_index do |player, index|
+      puts "Player #{index + 1}:"
+      result = player.say_hand
+      result[:id] = index + 1
+      @results << result
+      puts
+      puts "Cards: "
       player.show_cards 
       40.times { print "-" }
       puts
     end
   end
-
-  def show_players_hands
-    @players.each_with_index do |player, index|
-      puts "Player #{index + 1} hand: "
-      player.say_hand
-      40.times { print "-" }
-      puts
-    end
-  end
-
-  # USAR MÉTODO SEND con SYMBOLS
-  def players_activity(message, method)
-  end
+  
 end
 
 game = PokerGame.new(5)
