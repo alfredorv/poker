@@ -1,7 +1,7 @@
 require_relative "../Hand"
 require_relative "../Player"
 
-RSpec.describe 'PokerHand' do
+RSpec.describe 'Player' do
   let(:cards) do
     [
       Card.new("clubs", "10"),
