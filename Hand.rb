@@ -7,88 +7,77 @@ class Hand
     @cards = cards
   end
 
-  def is_royal_flush?
+  def royal_flush?
     return false unless all_same_suit?
-    find_cards_numeric_value.sort == [1, 10, 11, 12, 13]
+    cards_values.sort == [1, 10, 11, 12, 13]
   end
 
-  def is_straight_flush?
+  def straight_flush?
     return false unless all_same_suit?
-    a = find_cards_numeric_value.sort
+    a = cards_values.sort
     a == (a.first..a.last).to_a
   end
 
-  def is_four_of_a_kind?
+  def four_of_a_kind?
     count_same_elements(cards_values).any? { |k,v| v == 4}
   end
 
-  def is_full_house?
-    is_three_of_a_kind? && is_pair?
+  def full_house?
+    three_of_a_kind? && pair?
   end
   
-  def is_flush?
+  def flush?
     all_same_suit?
   end
   
-  def is_straight?
-    a = find_cards_numeric_value.sort
+  def straight?
+    a = cards_values.sort
     a == (a.first..a.last).to_a
   end
   
-
-  def is_three_of_a_kind?
+  def three_of_a_kind?
     count_same_elements(cards_values).any? { |k,v| v == 3} 
   end
 
-  def is_two_pair?
+  def two_pair?
     count_same_elements(cards_values).select! { |k,v| v == 2 }.length == 2
   end
 
-  def is_pair?
+  def pair?
     count_same_elements(cards_values).select! { |k,v| v == 2 }.length == 1
   end
 
   def high_card
-    a = find_cards_numeric_value
+    a = cards_values
     a.include?(1) ? 14 : a.max
   end
   
   def which_hand_am_i
     points =  cards_values.reduce(:+)
-    return { name: "Royal Flush", points: 10000 + points } if is_royal_flush?
-    return { name: "Straight Flush", points: 9000 + points } if is_straight_flush?
-    return { name: "Four of a Kind", points: 8000 + points } if is_four_of_a_kind?
-    return { name: "Full House", points: 7000 + points } if is_full_house?
-    return { name: "Flush", points: 6000 + points } if is_flush?
-    return { name: "Straight", points: 5000 + points } if is_straight?
-    return { name: "Three of a Kind", points: 4000 + points } if is_three_of_a_kind?
-    return { name: "Two pair", points: 3000 + points } if is_two_pair?
-    return { name: "Pair", points: 2000 + points } if is_pair?
+    return { name: "Royal Flush", points: 10000 + points } if royal_flush?
+    return { name: "Straight Flush", points: 9000 + points } if straight_flush?
+    return { name: "Four of a Kind", points: 8000 + points } if four_of_a_kind?
+    return { name: "Full House", points: 7000 + points } if full_house?
+    return { name: "Flush", points: 6000 + points } if flush?
+    return { name: "Straight", points: 5000 + points } if straight?
+    return { name: "Three of a Kind", points: 4000 + points } if three_of_a_kind?
+    return { name: "Two pair", points: 3000 + points } if two_pair?
+    return { name: "Pair", points: 2000 + points } if pair?
     return { name: "High card", points: 1000 + high_card }
   end
 
 private
   def all_same_suit?
-    count_hash = Hash.new(0)
-    @cards.each { |card| count_hash[card.suit] += 1 } 
-    count_hash.any? { |k,v| v == 5 }
+    @cards.each_with_object(Hash.new(0)) do |card, count_hash|
+      count_hash[card.suit] += 1
+    end.any? { |k,v| v == 5 }
   end
 
   def cards_values
-    a = Array.new
-    @cards.each { |card| a << StandardDeck::VALUES[card.value] }
-    a
+    @cards.each_with_object([]) { |card, a| a << StandardDeck::VALUES[card.value] }
   end
 
   def count_same_elements(array)
-    count_hash = Hash.new(0)
-    array.each { |element|  count_hash[element] += 1 }
-    count_hash
-  end
-
-  def find_cards_numeric_value
-    a = Array.new
-    @cards.each { |card| a << StandardDeck::VALUES[card.value] }
-    a
+    array.each_with_object(Hash.new(0)) { |element, count_hash|  count_hash[element] += 1}
   end
 end

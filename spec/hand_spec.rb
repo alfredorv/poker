@@ -4,7 +4,7 @@ RSpec.describe 'PokerHand' do
   let(:cards) { [] }
   subject { Hand.new(cards) } 
 
-  context "#is_royal_flush?" do
+  context "#royal_flush?" do
     let(:cards) do
       [
         Card.new("clubs", "10"),
@@ -15,7 +15,7 @@ RSpec.describe 'PokerHand' do
       ]
     end
     
-    it { expect(subject.is_royal_flush?).to be_truthy}
+    it { expect(subject.royal_flush?).to be_truthy }
 
     context "but the hand is not royal flush" do
       let(:cards) do
@@ -28,12 +28,12 @@ RSpec.describe 'PokerHand' do
         ]
       end
 
-      it { expect(subject.is_royal_flush?).to be_falsy }
+      it { expect(subject.royal_flush?).to be_falsy }
       
     end
   end
 
-  context "#is_srtaight_flush?" do
+  context "#srtaight_flush?" do
     let(:cards) do
       [
         Card.new("clubs", "8"),
@@ -44,7 +44,7 @@ RSpec.describe 'PokerHand' do
       ]
     end
 
-    it { expect(subject.is_straight_flush?).to be_truthy }
+    it { expect(subject.straight_flush?).to be_truthy }
 
     context "but the cards are not sequential" do
       let(:cards) do
@@ -57,7 +57,7 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.is_straight_flush?).to be_falsy }
+      it { expect(subject.straight_flush?).to be_falsy }
     end
 
     context "but the suits are not equal" do
@@ -71,11 +71,11 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.is_straight_flush?).to be_falsy }
+      it { expect(subject.straight_flush?).to be_falsy }
     end
   end
 
-  context "#is_four_of_a_kind?" do
+  context "#four_of_a_kind?" do
     let(:cards) do
       [
         Card.new("spades", "A"),
@@ -86,7 +86,7 @@ RSpec.describe 'PokerHand' do
       ]
     end
 
-    it { expect(subject.is_four_of_a_kind?).to be_truthy }
+    it { expect(subject.four_of_a_kind?).to be_truthy }
 
     context "but the hand is not four of a kind" do
       let(:cards) do
@@ -99,11 +99,11 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.is_four_of_a_kind?).to be_falsy }
+      it { expect(subject.four_of_a_kind?).to be_falsy }
     end
   end
 
-  context "#is_full_house?" do
+  context "#full_house?" do
     let(:cards) do
       [
         Card.new("spades", "A"),
@@ -114,7 +114,7 @@ RSpec.describe 'PokerHand' do
       ]
     end
 
-    it { expect(subject.is_full_house?).to be_truthy }
+    it { expect(subject.full_house?).to be_truthy }
 
     context "but the hand is not full house" do
       let(:cards) do
@@ -127,11 +127,11 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.is_full_house?).to be_falsy }
+      it { expect(subject.full_house?).to be_falsy }
     end
   end
 
-  context "#is_flush?" do
+  context "#flush?" do
     let(:cards) do
       [
         Card.new("spades", "A"),
@@ -142,7 +142,7 @@ RSpec.describe 'PokerHand' do
       ]
     end
 
-    it { expect(subject.is_flush?).to be_truthy }
+    it { expect(subject.flush?).to be_truthy }
 
     context "but the hand is not flush" do
       let(:cards) do
@@ -155,11 +155,11 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.is_flush?).to be_falsy }
+      it { expect(subject.flush?).to be_falsy }
     end
   end
 
-  context "#is_straight?" do
+  context "#straight?" do
     let(:cards) do
       [
         Card.new("diamonds", "5"),
@@ -170,7 +170,7 @@ RSpec.describe 'PokerHand' do
       ]
     end
 
-    it { expect(subject.is_straight?).to be_truthy }
+    it { expect(subject.straight?).to be_truthy }
 
     context "but cards are not sequential" do
       let(:cards) do
@@ -183,11 +183,11 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.is_straight?).to be_falsy }
+      it { expect(subject.straight?).to be_falsy }
     end
   end
 
-  context "#is_three_of_a_kind?" do
+  context "#three_of_a_kind?" do
     let(:cards) do
       [
         Card.new("spades", "A"),
@@ -198,7 +198,7 @@ RSpec.describe 'PokerHand' do
       ]
     end
 
-    it { expect(subject.is_three_of_a_kind?).to be_truthy }
+    it { expect(subject.three_of_a_kind?).to be_truthy }
 
     context "but the hand is not three of a kind" do
       let(:cards) do
@@ -211,11 +211,11 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.is_three_of_a_kind?).to be_falsy }
+      it { expect(subject.three_of_a_kind?).to be_falsy }
     end
   end
 
-  context "#is_two_pair?" do
+  context "#two_pair?" do
     let(:cards) do
       [
         Card.new("spades", "A"),
@@ -226,7 +226,7 @@ RSpec.describe 'PokerHand' do
       ]
     end
 
-    it { expect(subject.is_two_pair?).to be_truthy }
+    it { expect(subject.two_pair?).to be_truthy }
 
     context "but there are not two pairs" do
       let(:cards) do
@@ -239,11 +239,11 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.is_two_pair?).to be_falsy }
+      it { expect(subject.two_pair?).to be_falsy }
     end
   end
 
-  context "#is_pair?" do
+  context "#pair?" do
     let(:cards) do
       [
         Card.new("spades", "A"),
@@ -254,7 +254,7 @@ RSpec.describe 'PokerHand' do
       ]
     end
 
-    it { expect(subject.is_pair?).to be_truthy }
+    it { expect(subject.pair?).to be_truthy }
 
     context "but there are no pairs" do
       let(:cards) do
@@ -267,7 +267,7 @@ RSpec.describe 'PokerHand' do
         ]
       end
   
-      it { expect(subject.is_pair?).to be_falsy }
+      it { expect(subject.pair?).to be_falsy }
     end
   end
 
